@@ -9,7 +9,7 @@ export default async function SupesPage() {
             <h1 className="text-gray-900 text-4xl font-semibold p-3">
                 ALL MY FAVORITE SUPES
             </h1>
-            <ComicDisplay inputComics={comics} />
+            <ComicDisplay comics={comics} />
         </main>
     )
 }
