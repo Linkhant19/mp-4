@@ -1,6 +1,6 @@
 // lib/getComics.ts
 
-import { ComicProps } from "@/types";
+import { ComicProps, ComicItem } from "@/types";
 
 export default async function getComics(): Promise<ComicProps[]> {
     const apiKey = process.env.COMICS_API_KEY;
@@ -16,8 +16,8 @@ export default async function getComics(): Promise<ComicProps[]> {
 
     const characters = await Promise.all(fetches);
 
-    return characters.map((item: any) => ({
-        id: item.id,
+    return characters.map((item: ComicItem) => ({
+        id: parseInt(item.id),
         name: item.name,
         // some of these characters have unknown fields in the data set so I am handling that here
         fullname: item.biography?.["full-name"],
