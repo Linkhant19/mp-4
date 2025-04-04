@@ -6,7 +6,7 @@ export default async function getComics(): Promise<ComicProps[]> {
     const apiKey = process.env.COMICS_API_KEY;
 
     // these are some cool ones i found, might change later
-    const characterIds = [31, 63, 455, 330, 138, 316, 69, 9, 11, 13]; 
+    const characterIds = [31, 63, 455, 330, 138, 316, 69, 44, 11, 13]; 
 
     // I am mapping all the ids to fetch from the api
     // I wil be using Promise.all to fetch all the characters at once
