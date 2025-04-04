@@ -58,19 +58,21 @@ var { g: global, __dirname } = __turbopack_context__;
 __turbopack_context__.s({
     "default": (()=>getComics)
 });
-function getRandomIds(count, max) {
-    // I am using this function to get random ids from 1 to 731 because the api only returns characters from 1 to 731
-    // I also wanted to implement a random function instead of always displaying the same ones
-    const ids = new Set();
-    while(ids.size < count){
-        const randomId = Math.floor(Math.random() * max) + 1;
-        ids.add(randomId);
-    }
-    return Array.from(ids).map(String);
-}
 async function getComics() {
     const apiKey = process.env.COMICS_API_KEY;
-    const characterIds = getRandomIds(1, 731);
+    // these are some cool ones i found, might change later
+    const characterIds = [
+        31,
+        63,
+        455,
+        330,
+        138,
+        316,
+        69,
+        9,
+        11,
+        13
+    ];
     // I am mapping all the ids to fetch from the api
     // I wil be using Promise.all to fetch all the characters at once
     const fetches = characterIds.map((id)=>fetch(`https://superheroapi.com/api/${apiKey}/${id}`).then((res)=>res.json()));
@@ -79,9 +81,9 @@ async function getComics() {
             id: item.id,
             name: item.name,
             // some of these characters have unknown fields in the data set so I am handling that here
-            fullname: item.biography?.["full-name"] ?? "Unknown",
+            fullname: item.biography?.["full-name"],
             image: item.image?.url ?? "",
-            publisher: item.biography?.publisher ?? "Unknown"
+            publisher: item.biography?.publisher
         }));
 }
 }}),
@@ -102,9 +104,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$getComics$2e$ts__$5b$
 async function SupesPage() {
     const comics = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$getComics$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+        className: "flex flex-col justify-center items-center bg-red-300",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                children: "SUPES"
+                className: "text-gray-900 text-4xl font-semibold p-3",
+                children: "ALL MY FAVORITE SUPES"
             }, void 0, false, {
                 fileName: "[project]/app/supes/page.tsx",
                 lineNumber: 9,

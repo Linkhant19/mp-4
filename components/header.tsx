@@ -6,7 +6,7 @@ export default function Header() {
     const linkStyling = "p-1 m-2 text-xl hover:underline";
 
     return (
-        <header className="flex justify-between items-center h-20">
+        <header className="flex justify-between items-center h-20 bg-red-300 text-purple-900">
             <h2 className="text-4xl font-semibold p-4">
                 HEROS AND VILLIANS
             </h2>
